@@ -1,3 +1,9 @@
+start transaction;
+drop table if exists ADMIN CASCADE;
+drop table if exists FUNCION CASCADE;
+drop table if exists ACOMOD CASCADE;
+drop table if exists PARTICIPA CASCADE;
+
 create table ADMIN (
 	id SERIAL NOT NULL,
 	rut INT NOT NULL,
@@ -15,6 +21,13 @@ create table FUNCION (
 );
 
 
+create table ACOMOD (
+	id SERIAL NOT NULL,
+	rut INT NOT NULL,
+	pass VARCHAR (10) NOT NULL,
+	PRIMARY KEY (id)
+);
+
 create table PARTICIPA (
 	id SERIAL NOT NULL,
 	funcion_id INT REFERENCES FUNCION (id) NOT NULL,
@@ -22,10 +35,4 @@ create table PARTICIPA (
 	PRIMARY KEY (id)
 );
 
-
-create table ACOMOD (
-	id SERIAL NOT NULL,
-	rut INT NOT NULL,
-	pass VARCHAR (10) NOT NULL,
-	PRIMARY KEY (id)
-);
+end transaction;
