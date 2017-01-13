@@ -7,9 +7,9 @@ create table users (
 	id SERIAL NOT NULL,
 	rut INT NOT NULL,
 	password VARCHAR(10) NOT NULL,
+	remember_token VARCHAR(255) NOT NULL,
 	PRIMARY KEY (id)
 );
-
 
 create table funciones (
 	id SERIAL NOT NULL,
