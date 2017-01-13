@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+use UTEM\Utils\Rut;
+
 class LoginController extends Controller
 {
     /*
@@ -35,5 +37,30 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest', ['except' => 'logout']);
+    }
+
+    /**
+     * Get the login username to be used by the controller.
+     *
+     * @return string
+     */
+    public function username()
+    {
+        return 'rut';
+    }
+
+    /**
+     * Attempt to log the user into the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return bool
+     */
+    protected function attemptLogin(Request $request)
+    {
+      $credentials = $this->credentials($request);
+      $credentials[$this->username()] = Rut::rut($credentials[$this->username()]);
+        return $this->guard()->attempt(
+            $this->credentials($request), $request->has('remember')
+        );
     }
 }
