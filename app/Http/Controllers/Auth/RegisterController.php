@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
+use UTEM\Utils\Rut;
+
 class RegisterController extends Controller
 {
     /*
@@ -48,8 +50,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
+            'rut' => 'required|max:20|rut',
             'password' => 'required|min:6|confirmed',
         ]);
     }
@@ -62,10 +63,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+      $rut = Rut::formatear($data['rut']);
+      // TODO: Reemplazar por insert a manito con DB::insert
+        // return User::create([
+        //     'rut' => $rut,
+        //     'password' => bcrypt($data['password']),
+        // ]);
     }
 }
