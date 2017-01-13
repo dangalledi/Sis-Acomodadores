@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "76036da3b5b55b91dbe1e1affa01bf9e",
+    "content-hash": "e755fd60ef6a916abb1420381a3d314b",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -1819,6 +1819,45 @@
                 "dump"
             ],
             "time": "2016-12-08T14:58:14+00:00"
+        },
+        {
+            "name": "utem/utils",
+            "version": "0.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pperez/php-utem-utils.git",
+                "reference": "680e1f57d49f3fe90b9e90379c87d4c2cfa036cf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pperez/php-utem-utils/zipball/680e1f57d49f3fe90b9e90379c87d4c2cfa036cf",
+                "reference": "680e1f57d49f3fe90b9e90379c87d4c2cfa036cf",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.0.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "UTEM\\Utils\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPLv2"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastián Salaza Molina",
+                    "email": "ssalazar@orangepeople.cl"
+                }
+            ],
+            "description": "Funciones utilitarias UTEM",
+            "keywords": [
+                "rut"
+            ],
+            "time": "2015-06-12T00:42:11+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
