@@ -6,6 +6,7 @@ drop table if exists participantes_funcion CASCADE;
 create table users (
 	id SERIAL NOT NULL,
 	rut INT NOT NULL,
+	rol INT NOT NULL DEFAULT 1,
 	password VARCHAR(255) NOT NULL,
 	remember_token VARCHAR(255),
 	PRIMARY KEY (id)
