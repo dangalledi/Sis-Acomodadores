@@ -14,7 +14,7 @@ class FuncionController extends Controller
      */
     public function index()
     {
-        $funcion= DB::select('select* from funcion');
+        $funcion= DB::select('select* from funciones');
         return $funcion;
     }
 
