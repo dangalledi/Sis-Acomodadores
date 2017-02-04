@@ -5,6 +5,11 @@ drop table if exists participantes_funcion CASCADE;
 
 create table users (
 	id SERIAL NOT NULL,
+	nombre VARCHAR (255) NOT NULL,
+	apellido VARCHAR (255) NOT NULL,
+	direccion VARCHAR (255) NOT NULL,
+	ncelular INT (8) NOT NULL,
+	sexo , 
 	rut INT NOT NULL,
 	rol INT NOT NULL DEFAULT 1,
 	password VARCHAR(255) NOT NULL,
