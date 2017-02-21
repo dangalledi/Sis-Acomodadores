@@ -16,3 +16,7 @@ Route::get('/', function () {
 });
 
 Route::resource ('funciones', 'FuncionController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
