@@ -8,8 +8,8 @@ create table users (
 	nombre VARCHAR (255) NOT NULL,
 	apellido VARCHAR (255) NOT NULL,
 	direccion VARCHAR (255) NOT NULL,
-	ncelular INT (8) NOT NULL,
-	sexo , 
+	ncelular INT NOT NULL,
+	sexo INT NOT NULL,
 	rut INT NOT NULL,
 	rol INT NOT NULL DEFAULT 1,
 	password VARCHAR(255) NOT NULL,
@@ -20,6 +20,8 @@ create table users (
 create table funciones (
 	id SERIAL NOT NULL,
 	fecha timestamp NOT NULL,
+	comentario text,
+	acomodadores INT NOT NULL,
 	admin_id INT REFERENCES users (id) NOT NULL,
 	PRIMARY KEY (id)
 );
