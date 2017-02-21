@@ -9,6 +9,7 @@ create table users (
 	apellido VARCHAR (255) NOT NULL,
 	direccion VARCHAR (255) NOT NULL,
 	ncelular INT NOT NULL,
+	email VARCHAR (255) NOT NULL,
 	sexo INT NOT NULL,
 	rut INT NOT NULL,
 	rol INT NOT NULL DEFAULT 1,

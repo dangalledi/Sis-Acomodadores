@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Validation\Rule;
+
 
 use UTEM\Utils\Rut;
 
@@ -54,6 +56,13 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'rut' => 'required|max:20|rut',
             'password' => 'required|min:6|confirmed',
+            'nombre'=> 'required|max:10',
+            'apellido'=> 'required|max:15',
+            'direccion'=> 'required|max:40',
+            'ncelular'=> 'required|max:8',
+            'email'=> 'required|max:20',
+            'sexo'=> ['required',Rule::in(['0','1'])]
+
         ]);
     }
 
@@ -82,9 +91,8 @@ class RegisterController extends Controller
      */
     public function register(Request $request)
     {
-        // dd($request);
         $this->validator($request->all())->validate();
-
+        dd('pase la validacion');
         event(new Registered($user = $this->create($request->all())));
 
         $this->guard()->login($user);
