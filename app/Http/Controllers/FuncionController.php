@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\CrearFuncionRequest;
 
 class FuncionController extends Controller
 {
@@ -35,9 +37,11 @@ class FuncionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CrearFuncionRequest $request)
     {
-        dd($request);
+        DB::insert('insert into funciones(fecha,acomodadores,comentario,admin_id) values(?,?,?,?)',
+          [$request->fecha,$request->acomodadores,$request->comentario, Auth::user()->id]);
+          return redirect('funciones'); 
     }
 
     /**

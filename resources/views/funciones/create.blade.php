@@ -7,7 +7,7 @@
         {{csrf_field()}}
         <div class="form-group">
           <label for="fecha">fecha</label>
-          <input type="text" name='fecha' class="form-control" id="fecha" placeholder="fecha de la funcion">
+          <input type="text" name='fecha' class="form-control" id="fecha" placeholder="año/dia/mes">
         </div>
         <div class="form-group">
           <label for="acomodadores">acomodadores</label>
