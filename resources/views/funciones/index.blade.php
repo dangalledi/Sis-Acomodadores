@@ -14,7 +14,7 @@
   <tbody>
     @foreach($funciones as $funcion)
     <tr>
-      <td>{{ $funcion->fecha }}</td>
+      <td>{{ \Carbon\Carbon::parse($funcion->fecha)->toDateString() }}</td>
       <td>{{ $funcion->acomodadores }}</td>
       <td>{{ $funcion->comentario or 'no hay comentarios' }}</td>
     </tr>
