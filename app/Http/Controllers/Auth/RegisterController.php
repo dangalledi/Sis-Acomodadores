@@ -9,7 +9,8 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Validation\Rule;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 use UTEM\Utils\Rut;
 
@@ -74,13 +75,23 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-      $rut = Rut::formatear($data['rut']);
-      dd($rut);
-      // TODO: Reemplazar por insert a manito con DB::insert
-        // return User::create([
-        //     'rut' => $rut,
-        //     'password' => bcrypt($data['password']),
-        // ]);
+      $datos=array_except($data,['_token','rut','password_confirmation','password']);
+      $rut = Rut::rut($data['rut']);
+      $datos=array_add($datos,'rut',$rut);
+      $datos=array_add($datos,'password',Hash::make($data['password']));
+
+      DB::insert('insert into users (nombre, apellido,direccion,ncelular,email,rut,sexo,password) values(?,?,?,?,?,?,?,?)',
+        [
+          $datos['nombre'],
+          $datos['apellido'],
+          $datos['direccion'],
+          $datos['ncelular'],
+          $datos['email'],
+          $rut,
+          $datos['sexo'],
+          Hash::make($datos['password'])
+        ]);
+        return DB::getPdo()->lastInsertId();
     }
 
     /**
@@ -92,10 +103,9 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         $this->validator($request->all())->validate();
-        dd('pase la validacion');
         event(new Registered($user = $this->create($request->all())));
 
-        $this->guard()->login($user);
+        $this->guard()->loginUsingId($user);
 
         return $this->registered($request, $user)
             ?: redirect($this->redirectPath());
