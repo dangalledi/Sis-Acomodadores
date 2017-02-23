@@ -99,12 +99,16 @@
                                   <div class="col-md-6">
                                     <label> Sexo</label>
                                     <label>
-                                      <input type="radio" name="sexo" id="hombre" value = "0">
+                                      <input type="radio" name="sexo" id="hombre" value = "0"
+                                      @if(old('sexo') == 0) checked @endif
+                                      >
                                       hombre
                                     </label>
 
                                     <label>
-                                      <input type="radio" name="sexo" id="mujer" value = "1">
+                                      <input type="radio" name="sexo" id="mujer" value = "1"
+                                      @if(old('sexo') == 1) checked @endif
+                                      >
                                       mujer
                                     </label>
 
