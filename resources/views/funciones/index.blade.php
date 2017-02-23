@@ -3,7 +3,24 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <h1>Hola funciones</h1>
+      <table class="table">
+  <thead>
+    <tr>
+      <th>fecha</th>
+      <th>acomodadores</th>
+      <th>comentario</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach($funciones as $funcion)
+    <tr>
+      <td>{{ $funcion->fecha }}</td>
+      <td>{{ $funcion->acomodadores }}</td>
+      <td>{{ $funcion->comentario }}</td>
+    </tr>
+    @endforeach
+  </tbody>
+</table>
     </div>
 </div>
 @endsection
