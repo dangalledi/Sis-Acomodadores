@@ -14,7 +14,7 @@ class FuncionController extends Controller
      */
     public function index()
     {
-        $funciones= DB::select('select* from funciones');
+        $funciones= DB::select('select* from funciones order by fecha desc');
         return view('funciones.index')
           ->with('funciones', $funciones);
     }
