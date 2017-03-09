@@ -21,4 +21,12 @@ class ParticiparFuncionController extends Controller
         }
         return redirect('funciones');
     }
+
+    public function eliminar($id, $user_id) {
+        $participante_funcion = DB::selectOne('select * from participantes_funcion where funcion_id = ' . $id . ' and acomodador_id = ' . $user_id);
+        if ($participante_funcion) {
+            DB::delete('delete from participantes_funcion where funcion_id = ' . $id . ' and acomodador_id = ' . $user_id);
+        }
+        return redirect('/funciones/' . $id);
+    }
 }

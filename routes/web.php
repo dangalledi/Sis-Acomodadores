@@ -22,3 +22,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 
 Route::post('/funciones/{id}/participar', 'ParticiparFuncionController@participar');
+
+Route::delete('/funciones/{id}/participantes/{user_id}', 'ParticiparFuncionController@eliminar');

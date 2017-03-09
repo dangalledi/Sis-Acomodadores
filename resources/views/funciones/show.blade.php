@@ -14,6 +14,9 @@
             <tr>
             <th>nombre</th>
             <th>apellido</th>
+            @if($user->rol == 0)
+                <th>eliminar</th>
+            @endif
             </tr>
         </thead>
         <tbody>
@@ -21,6 +24,14 @@
             <tr>
             <td>{{ $acomodador->nombre }}</td>
             <td>{{ $acomodador->apellido }}</td>
+            @if($user->rol == 0)
+                <td>
+                    <form action="{{ url('/funciones/' . $funcion->id . '/participantes/' . $acomodador->id) }}" method="POST">
+                        <input type="hidden" name="_method" value="delete">
+                        <button class="btn btn-danger" type="submit">Eliminar!</button>
+                    </form>
+                </td>
+            @endif
             </tr>
             @endforeach
         </tbody>
