@@ -52,7 +52,14 @@ class FuncionController extends Controller
      */
     public function show($id)
     {
-        //
+        $funcion = DB::selectOne('select * from funciones where id = ' . $id);
+        $participantes = DB::select('select users.nombre, users.apellido
+                                    from funciones
+                                    inner join participantes_funcion on (participantes_funcion.funcion_id = funciones.id)
+                                    inner join users on (participantes_funcion.acomodador_id = users.id) where funciones.id = ' . $id);
+        return view('funciones.show')
+                ->with('funcion', $funcion)
+                ->with('participantes', $participantes);
     }
 
     /**

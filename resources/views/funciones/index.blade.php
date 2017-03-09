@@ -10,6 +10,7 @@
           <th>acomodadores</th>
           <th>comentario</th>
           <th>participar</th>
+          <th>ver</th>
         </tr>
       </thead>
       <tbody>
@@ -23,11 +24,12 @@
               <button class="btn btn-primary" type="submit">Participar!</button>
             </form>
           </td>
+          <td><a href="{{ route('funciones.show', $funcion->id) }}" class="btn btn-success" role="button">Ver</a></td>
         </tr>
         @endforeach
       </tbody>
     </table>
-    <a class='btn btn-default' role='button' href="{{ url('funciones/create' )}}"> agregar funcion </a>
+    <a class='btn btn-primary' role='button' href="{{ url('funciones/create' )}}"> agregar funcion </a>
   </div>
 </div>
 @endsection
