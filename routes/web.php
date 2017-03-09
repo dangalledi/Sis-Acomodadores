@@ -20,3 +20,5 @@ Route::resource ('funciones', 'FuncionController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::post('/funciones/{id}/participar', 'ParticiparFuncionController@participar');
