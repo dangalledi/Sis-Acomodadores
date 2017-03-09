@@ -24,3 +24,7 @@ Route::get('/home', 'HomeController@index');
 Route::post('/funciones/{id}/participar', 'ParticiparFuncionController@participar');
 
 Route::delete('/funciones/{id}/participantes/{user_id}', 'ParticiparFuncionController@eliminar');
+
+Route::get('/users', 'UserController@index');
+
+Route::post('/users/{id}/cambio-rol', 'UserController@cambioRol');
