@@ -19,12 +19,18 @@
           <td>{{ \Carbon\Carbon::parse($funcion->fecha)->toDateString() }}</td>
           <td>{{ $funcion->acomodadores }}</td>
           <td>{{ $funcion->comentario or 'no hay comentarios' }}</td>
-          <td>
-            <form action="{{ url('/funciones/' . $funcion->id . '/participar') }}" method="POST">
-              <button class="btn btn-primary" type="submit">Participar!</button>
-            </form>
-          </td>
-          <td><a href="{{ route('funciones.show', $funcion->id) }}" class="btn btn-success" role="button">Ver</a></td>
+          @if($funcion->acomodadores > $funcion->cantidad_participantes)
+            <td>
+              <form action="{{ url('/funciones/' . $funcion->id . '/participar') }}" method="POST">
+                <button class="btn btn-primary" type="submit">participar</button>
+              </form>
+            </td>
+          @else
+            <td>
+              <button class="btn btn-danger" type="submit">no quedan cupos</button>
+            </td>
+          @endif
+          <td><a href="{{ route('funciones.show', $funcion->id) }}" class="btn btn-success" role="button">ver</a></td>
         </tr>
         @endforeach
       </tbody>

@@ -14,11 +14,16 @@ class FuncionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index()  // Pag Funciones
     {
-        $funciones= DB::select('select* from funciones order by fecha desc');
+        $funciones= DB::select('select f.id, count(pf.funcion_id) as cantidad_participantes, f.acomodadores, f.fecha, f.comentario
+                                from participantes_funcion pf
+                                inner join funciones f on (f.id = pf.funcion_id)
+                                group by f.id, pf.funcion_id, f.acomodadores, f.fecha, f.comentario
+                                order by f.id desc');
         return view('funciones.index')
           ->with('funciones', $funciones);
+
     }
 
     /**
@@ -37,11 +42,11 @@ class FuncionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CrearFuncionRequest $request)
+    public function store(CrearFuncionRequest $request) //Agregar funcion
     {
         DB::insert('insert into funciones(fecha,acomodadores,comentario,admin_id) values(?,?,?,?)',
           [$request->fecha,$request->acomodadores,$request->comentario, Auth::user()->id]);
-          return redirect('funciones'); 
+          return redirect('funciones');
     }
 
     /**
@@ -50,7 +55,7 @@ class FuncionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id) //Ver.. Participantes
     {
         $funcion = DB::selectOne('select * from funciones where id = ' . $id);
         $participantes = DB::select('select users.nombre, users.apellido, users.id

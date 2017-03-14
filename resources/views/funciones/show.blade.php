@@ -28,7 +28,7 @@
                 <td>
                     <form action="{{ url('/funciones/' . $funcion->id . '/participantes/' . $acomodador->id) }}" method="POST">
                         <input type="hidden" name="_method" value="delete">
-                        <button class="btn btn-danger" type="submit">Eliminar!</button>
+                        <button class="btn btn-danger" type="submit">eliminar</button>
                     </form>
                 </td>
             @endif
